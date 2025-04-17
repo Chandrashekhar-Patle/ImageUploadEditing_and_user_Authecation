@@ -113,8 +113,8 @@ function SignUp() {
                         className="bg-gray-300 w-[420px] px-4 py-2 my-1 block"
                         />
                 </div>
-                <div className="flex text-lg my-4">
-                    <p>Already have an account? <span><Link to="/login" className="">Sign in</Link></span></p>
+                <div className="flex text-lg my-2">
+                    <p className="font-medium text-xl">Already have an account? <span><Link to="/login" className="text-indigo-700 font-semibold">Sign in</Link></span></p>
                     
                 </div>
                 <button type="submit" className="w-[450px] py-1 bg-blue-800 hover:bg-blue-700 my-4 text-lg font-semibold">Submit</button>

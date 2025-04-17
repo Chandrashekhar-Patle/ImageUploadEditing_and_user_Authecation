@@ -60,7 +60,7 @@ const Login = async (req, res) => {
         if (userpassword) {
             res.status(200).json({
                 msg : "login successfully", 
-                token : await userExist.generteToken(),
+                token : await userExist.generateToken(),
                 userId : userExist._id.toString(),
              })
         }else{

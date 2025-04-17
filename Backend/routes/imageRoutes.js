@@ -1,5 +1,6 @@
 const express = require("express");
 const Router = express.Router()
+
 const upload = require("../controllers/imageController");
 
 Router.post('/', upload.single('image'), (req, res) => {

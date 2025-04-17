@@ -14,6 +14,8 @@ function Navbar() {
                 </div>
                 <ul className="nav-Item">
                     <li onClick={()=> setMenu("home")}><Link className="link" to="/">Home </Link>{menu === "home" ? <hr /> : <></>}</li>
+                    <li onClick={()=> setMenu("upload")}><Link className="link" to="/upload">Upload </Link>{menu === "upload" ? <hr /> : <></>}</li>
+                    <li onClick={()=> setMenu("editor")}><Link className="link" to="/imageeditor">Image Editor </Link>{menu === "editor" ? <hr /> : <></>}</li>
                 </ul>
 
                 <div className="buttons">

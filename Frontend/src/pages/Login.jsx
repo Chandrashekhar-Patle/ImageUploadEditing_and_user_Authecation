@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 function Login() {
     const [login, setLogin]= useState({
@@ -18,23 +18,39 @@ function Login() {
             
         });
     }
-
-    const createAccount = (e)=>{
+    const navigate = useNavigate();
+    const createAccount = async (e)=>{
         e.preventDefault();
 
+        if(!login) return;
         try {
+            const loginResponse = await fetch("http://127.0.0.1:8000/authroutes/login", {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify(login)
+            })
+
+            console.log(`login form response : ${loginResponse}`);
+            
+            if(loginResponse.ok){
+                setLogin({
+                    email : "",
+                    password : ""
+                });
+                alert("Login Successfully");
+                navigate("/");
+            }
+            else{
+                alert(`Invalid Creditial`);
+            }
             
         } catch (error) {
             console.error(`login page error ${error}`);
         }
 
-        if(!login) return;
-
-        console.log(login);
-        setLogin({
-            email : "",
-            password : ""
-        });
+       
     }
     
     return(
@@ -69,10 +85,10 @@ function Login() {
                         />
                 </div>
                 
-                <button type="submit" className="w-[420px] py-1 bg-blue-800 hover:bg-blue-700 my-4 text-lg font-semibold">Submit</button>
+                <button type="submit" className="w-[420px] py-1 bg-blue-800 hover:bg-blue-700 my-2 text-lg font-semibold">Submit</button>
 
-                <div className="flex text-lg my-4">
-                    <p>Don't have an account?<Link to="/register">Register</Link></p>
+                <div className="flex text-lg my-2">
+                    <p className="font-medium text-xl">Don't have an account?<Link to="/register" className="text-indigo-700 font-semibold">Register</Link></p>
                 </div>
             </form>
         </div>
